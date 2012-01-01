@@ -1,0 +1,24 @@
+Basically this is just the CKEditor javascript files with a 'fields.py'
+file providing a 'RichTextField' and a 'CkeditorWidget' that attaches
+the proper javascript to the form field widget.
+
+
+1. Declare a model with a 'RichTextField'.
+2. in the admin.py, use the formfield overrides to add the CKeditor widget
+   to rich text fields.
+
+
+--- models.py ---
+from ckeditor.fields import RichTextField
+
+class SampleModel(models.Model):
+    description = RichTextField()
+
+--- admin.py ---
+from ckeditor.fields import RichTextField, CkeditorWidget
+
+class SampleModelAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        RichTextField: {'widget': CkeditorWidget},
+    }
+
