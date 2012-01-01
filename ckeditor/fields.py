@@ -30,3 +30,9 @@ class CkeditorWidget(widgets.Textarea):
     class Media:
         css = {'all': (settings.STATIC_URL + "ckeditor/ckeditor.css",)}
         js = (settings.STATIC_URL + "ckeditor/ckeditor.js",)
+
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
+except ImportError:
+    pass
